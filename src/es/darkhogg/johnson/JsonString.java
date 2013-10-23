@@ -8,6 +8,9 @@ package es.darkhogg.johnson;
  */
 public final class JsonString extends JsonValue<String> {
 
+    /** The empty string. */
+    public static final JsonString EMPTY = new JsonString("");
+
     /**
      * Creates a new JSON string with the given value.
      * 
@@ -21,4 +24,21 @@ public final class JsonString extends JsonValue<String> {
         }
     }
 
+    @Override
+    public int hashCode () {
+        return value.hashCode();
+    }
+
+    @Override
+    public boolean equals (Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof JsonString)) {
+            return false;
+        }
+        
+        JsonString jstr = (JsonString) obj;
+        return value.equals(jstr.value);
+    }
 }

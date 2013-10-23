@@ -10,7 +10,7 @@ package es.darkhogg.johnson;
 public abstract class JsonValue<T> {
     
     /** Value wrapped in this JSON value */
-    private final T value;
+    protected final T value;
     
     /**
      * Constructs the JSON value with the given type and value.

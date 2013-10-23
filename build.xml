@@ -1,9 +1,61 @@
 <project name="Johnson" default="package">
-	<target name="package">
+	<!-- Environmental Variables -->
+	<property environment="env" />
 
+	<!-- Version of the library -->
+	<property name="version" value="0.1.0" />
+
+	<property name="java.package" value="es.darkhogg.johnson" />
+	<property name="java.package.test" value="${java.package}.test" />
+
+	<!-- Directories -->
+	<property name="dir.source" value="src" />
+	<property name="dir.tests" value="test" />
+	<property name="dir.classes" value="bin" />
+	<property name="dir.target" value="dist" />
+	<property name="dir.libraries" value="libs" />
+	<property name="dir.libraries.test" value="${dir.libraries}/test" />
+
+	<!-- Target JAR file -->
+	<property name="file.target.jarlib" value="${dir.target}/Johnson_${version}.jar" />
+
+	<!-- Code Compilation -->
+	<target name="compile">
+		<mkdir dir="${dir.classes}" />
+		<javac srcdir="${dir.source};${dir.tests}" destdir="${dir.classes}"
+			fork="true" source="1.6" target="1.6" includeantruntime="false"
+			classpathref="classpath" />
 	</target>
-	
-	<target name="test">
-	    
+
+	<!-- Classpath -->
+	<path id="classpath">
+		<fileset dir="${dir.libraries}" includes="*.jar" />
+		<fileset dir="${dir.libraries.test}" includes="*.jar" />
+		<pathelement path="${dir.classes}" />
+	</path>
+
+	<!-- Package Generation -->
+	<target name="package" depends="compile">
+		<mkdir dir="dir.target" />
+	</target>
+
+	<!-- Test Invocation -->
+	<target name="test" depends="compile">
+		<junit failureproperty="test.failed" fork="yes" forkmode="once">
+			<classpath refid="classpath" />
+
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${dir.tests}" includes="**/*.java" />
+			</batchtest>
+		</junit>
+
+		<fail message="JUnit tests failed" if="test.failed" />
+	</target>
+
+	<!-- Clean -->
+	<target name="clean">
+		<delete dir="${dir.target}" />
+		<delete dir="${dir.classes}" />
 	</target>
 </project>
