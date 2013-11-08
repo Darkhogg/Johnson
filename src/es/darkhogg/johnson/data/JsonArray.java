@@ -1,4 +1,4 @@
-package es.darkhogg.johnson;
+package es.darkhogg.johnson.data;
 
 import java.util.ArrayList;
 import java.util.Collection;

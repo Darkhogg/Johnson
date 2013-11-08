@@ -4,8 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import es.darkhogg.johnson.JsonBoolean;
-import es.darkhogg.johnson.JsonString;
+import es.darkhogg.johnson.data.JsonBoolean;
 
 /**
  * Tests for the {@link JsonBoolean} class.

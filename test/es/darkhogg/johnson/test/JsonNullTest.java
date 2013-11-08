@@ -4,7 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import es.darkhogg.johnson.JsonNull;
+import es.darkhogg.johnson.data.JsonNull;
 
 /**
  * Tests for the {@link JsonNull} class.

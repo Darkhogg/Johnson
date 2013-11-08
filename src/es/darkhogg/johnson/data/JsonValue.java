@@ -1,4 +1,4 @@
-package es.darkhogg.johnson;
+package es.darkhogg.johnson.data;
 
 /**
  * A class that represents a JSON value type.

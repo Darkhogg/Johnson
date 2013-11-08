@@ -1,4 +1,4 @@
-package es.darkhogg.johnson;
+package es.darkhogg.johnson.data;
 
 /**
  * Representation of a JSON number.

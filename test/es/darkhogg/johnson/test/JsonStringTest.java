@@ -4,7 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import es.darkhogg.johnson.JsonString;
+import es.darkhogg.johnson.data.JsonString;
 
 /**
  * Tests for the {@link JsonString} class.

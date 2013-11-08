@@ -1,4 +1,4 @@
-package es.darkhogg.johnson;
+package es.darkhogg.johnson.data;
 
 /**
  * The class that represents the JSON <tt>null</tt> value. This class is implemented as a <i>singleton</i>, being
