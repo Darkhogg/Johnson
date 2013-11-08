@@ -36,7 +36,7 @@
 
 	<!-- Package Generation -->
 	<target name="package" depends="compile">
-		<mkdir dir="dir.target" />
+		<mkdir dir="${dir.target}" />
 		
 	</target>
 
