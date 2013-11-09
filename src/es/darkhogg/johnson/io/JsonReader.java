@@ -13,6 +13,7 @@ import java.io.Reader;
  */
 public final class JsonReader implements Closeable {
 
+    /** Underlying reader */
     private final Reader reader;
 
     /**
@@ -27,9 +28,14 @@ public final class JsonReader implements Closeable {
 
         this.reader = reader;
     }
+    
+    
 
     /**
-     * Closes the underlying reader
+     * Closes the underlying reader.
+     * 
+     * @throws IOException If the underlying reader throws it
+     * @see java.io.Reader#close
      */
     @Override
     public void close () throws IOException {
