@@ -67,8 +67,6 @@ public final class JsonWriter implements Closeable {
         if (state.isCommaNeeded()) {
             writeToWriter(',');
         }
-
-        state.setCommaNeeded(false);
     }
 
     /**
