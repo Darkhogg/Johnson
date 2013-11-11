@@ -36,7 +36,7 @@ final class JsonState {
 
     public void begin () {
         stateStack = null;
-        pushState(EMPTY);
+        pushState(TOP_VALUE);
     }
 
     /**
@@ -89,11 +89,6 @@ final class JsonState {
         return commaNeeded;
     }
 
-    /** @param commaNeeded New value for whether la comma is needed */
-    public void setCommaNeeded (boolean commaNeeded) {
-        this.commaNeeded = commaNeeded;
-    }
-
     /**
      * Performs the state transitions for the case that a value is written.
      * 
@@ -103,12 +98,14 @@ final class JsonState {
         switch (getState()) {
             case TOP_VALUE: {
                 // Top value -- write it, then stop
+                commaNeeded = false;
                 popState();
                 break;
             }
 
             case ARRAY_VALUE_FIRST: {
                 // Array value -- continue being an array
+                commaNeeded = false;
                 popState();
                 pushState(ARRAY_VALUE);
                 break;
@@ -129,6 +126,7 @@ final class JsonState {
 
             case OBJECT_VALUE: {
                 // Object value -- next, we need a key
+                commaNeeded = false;
                 popState();
                 pushState(OBJECT_KEY);
                 break;
@@ -158,6 +156,7 @@ final class JsonState {
 
             case OBJECT_KEY_FIRST: {
                 // Object key -- continue with a value
+                commaNeeded = false;
                 popState();
                 pushState(OBJECT_VALUE);
                 break;
@@ -190,6 +189,7 @@ final class JsonState {
             case ARRAY_VALUE_FIRST:
             case OBJECT_VALUE: {
                 // Value -- push the array
+                commaNeeded = false;
                 pushState(ARRAY_VALUE_FIRST);
                 break;
             }
@@ -225,6 +225,7 @@ final class JsonState {
             case ARRAY_VALUE_FIRST:
             case ARRAY_VALUE: {
                 // Array value -- can close the array!
+                commaNeeded = false;
                 popState();
                 value(); // Safe -- we checked there was a value state before
                 break;
